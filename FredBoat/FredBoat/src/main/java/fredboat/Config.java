@@ -327,6 +327,7 @@ public class Config {
         } else {
             out = content;
         }
+        return out;
     }
 
     public String getRandomGoogleKey() {
@@ -435,6 +436,7 @@ public class Config {
         } else {
             nameGame = game;
         }
+        return nameGame;
     }
 
     public String getTestBotToken() {
