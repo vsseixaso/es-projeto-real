@@ -49,13 +49,12 @@ public class ReviveCommand extends Command implements ICommandRestricted {
     @Override
     public void onInvoke(@Nonnull CommandContext context) {
 
-        int shardId;
-
         if (!context.hasArguments()) {
             HelpCommand.sendFormattedCommandHelp(context);
             return;
         }
 
+        int shardId;
         try {
             if (context.args.length > 1 && context.args[0].equals("guild")) {
                 long guildId = Long.valueOf(context.args[1]);

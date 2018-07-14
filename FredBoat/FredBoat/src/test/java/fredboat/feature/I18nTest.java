@@ -36,8 +36,6 @@ import java.util.ResourceBundle;
 
 public class I18nTest extends ProvideJDASingleton {
 
-    private static final Logger log = LoggerFactory.getLogger(I18nTest.class);
-
     @AfterAll
     public static void postStats() {
         saveClassStats(I18nTest.class.getSimpleName());

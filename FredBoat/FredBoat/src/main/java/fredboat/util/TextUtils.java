@@ -60,20 +60,20 @@ public class TextUtils {
     }
 
     public static Message prefaceWithName(Member member, String msg) {
-        msg = ensureSpace(msg);
+        String message = ensureSpace(msg);
         return CentralMessaging.getClearThreadLocalMessageBuilder()
                 .append(member.getEffectiveName())
                 .append(": ")
-                .append(msg)
+                .append(message)
                 .build();
     }
 
     public static Message prefaceWithMention(Member member, String msg) {
-        msg = ensureSpace(msg);
+        String message = ensureSpace(msg);
         return CentralMessaging.getClearThreadLocalMessageBuilder()
                 .append(member.getAsMention())
                 .append(": ")
-                .append(msg)
+                .append(message)
                 .build();
     }
 
@@ -177,8 +177,8 @@ public class TextUtils {
 
     public static String roundToTwo(double value) {
         long factor = (long) Math.pow(10, 2);
-        value = value * factor;
-        long tmp = Math.round(value);
+        double newValue = value * factor;
+        long tmp = Math.round(newValue);
         return percentageFormat.format((double) tmp / factor);
     }
 
@@ -227,6 +227,8 @@ public class TextUtils {
                 hours = Integer.parseInt(m.group(1));
                 minutes = Integer.parseInt(m.group(2));
                 seconds = Integer.parseInt(m.group(3));
+                break;
+            default:
                 break;
         }
 

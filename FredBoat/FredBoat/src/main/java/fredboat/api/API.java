@@ -66,7 +66,7 @@ public class API {
             res.type("application/json");
 
             JSONObject root = new JSONObject();
-            JSONArray a = new JSONArray();
+            JSONArray jsonArray = new JSONArray();
 
             for (FredBoat fb : FredBoat.getShards()) {
                 JSONObject fbStats = new JSONObject();
@@ -75,7 +75,7 @@ public class API {
                         .put("users", fb.getUserCount())
                         .put("status", fb.getJda().getStatus());
 
-                a.put(fbStats);
+                jsonArray.put(fbStats);
             }
 
             JSONObject g = new JSONObject();
@@ -85,7 +85,7 @@ public class API {
                     .put("guilds", FredBoat.getTotalGuildsCount())
                     .put("users", FredBoat.getTotalUniqueUsersCount());
 
-            root.put("shards", a);
+            root.put("shards", jsonArray);
             root.put("global", g);
 
             return root;

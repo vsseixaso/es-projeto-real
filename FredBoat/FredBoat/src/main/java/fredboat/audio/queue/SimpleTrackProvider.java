@@ -128,7 +128,7 @@ public class SimpleTrackProvider extends AbstractTrackProvider {
         }
 
         //trigger shuffle queue update if we found tracks to remove
-        if (result.size() > 0) shouldUpdateShuffledQueue = true;
+        if (result.isEmpty()) shouldUpdateShuffledQueue = true;
         return result;
     }
 

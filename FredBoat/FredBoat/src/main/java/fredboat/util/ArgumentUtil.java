@@ -45,12 +45,12 @@ public class ArgumentUtil {
     public static List<Member> fuzzyMemberSearch(Guild guild, String term, boolean includeBots) {
         ArrayList<Member> list = new ArrayList<>();
 
-        term = term.toLowerCase();
+        String termLowerCase = term.toLowerCase();
 
         for (Member mem : guild.getMembers()) {
-            if ((mem.getUser().getName().toLowerCase() + "#" + mem.getUser().getDiscriminator()).contains(term)
-                    || (mem.getEffectiveName().toLowerCase().contains(term))
-                    || term.contains(mem.getUser().getId())) {
+            if ((mem.getUser().getName().toLowerCase() + "#" + mem.getUser().getDiscriminator()).contains(termLowerCase)
+                    || (mem.getEffectiveName().toLowerCase().contains(termLowerCase))
+                    || termLowerCase.contains(mem.getUser().getId())) {
 
                 if (!includeBots && mem.getUser().isBot()) continue;
                 list.add(mem);
@@ -63,11 +63,11 @@ public class ArgumentUtil {
     public static List<Role> fuzzyRoleSearch(Guild guild, String term) {
         ArrayList<Role> list = new ArrayList<>();
 
-        term = term.toLowerCase();
+        String termLowerCase = term.toLowerCase();
 
         for (Role role : guild.getRoles()) {
-            if ((role.getName().toLowerCase()).contains(term)
-                    || term.contains(role.getId())) {
+            if ((role.getName().toLowerCase()).contains(termLowerCase)
+                    || termLowerCase.contains(role.getId())) {
                 list.add(role);
             }
         }

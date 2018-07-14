@@ -69,7 +69,6 @@ public class ForwardCommand extends Command implements IMusicCommand, ICommandRe
         }
 
         AudioTrackContext atc = player.getPlayingTrack();
-        AudioTrack at = atc.getTrack();
 
         //Ensure bounds
         t = Math.max(0, t);

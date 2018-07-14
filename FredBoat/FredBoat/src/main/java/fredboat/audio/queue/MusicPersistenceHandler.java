@@ -155,7 +155,6 @@ public class MusicPersistenceHandler {
     }
 
     public static void reloadPlaylists(FredBoat shard) {
-        File dir = new File("music_persistence");
 
         if(Config.CONFIG.getDistribution() == DistributionEnum.MUSIC) {
             log.warn("Music persistence loading is disabled on the MUSIC distribution! Use PATRON or DEVELOPMENT instead"
@@ -163,6 +162,7 @@ public class MusicPersistenceHandler {
             return;
         }
 
+        File dir = new File("music_persistence");
         log.info("Began reloading playlists for shard {}", shard.getShardInfo().getShardId());
         if (!dir.exists()) {
             log.info("No music persistence directory found.");

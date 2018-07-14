@@ -108,6 +108,8 @@ public class BrainfuckCommand extends Command implements IUtilCommand {
                         } while (depth < 0);
                     }
                     break;
+                default:
+                    break;
             } // switch (command)
         }
         return output.toString();

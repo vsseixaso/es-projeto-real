@@ -221,12 +221,12 @@ public abstract class AbstractPlayer extends AudioEventAdapterWrapped implements
     }
 
     public List<AudioTrackContext> getTracksInHistory(int start, int end) {
-        start = Math.max(start, 0);
-        end = Math.max(end, start);
+        int newStart = Math.max(start, 0);
+        int newEnd = Math.max(end, newStart);
         List<AudioTrackContext> historyList = new ArrayList<>(historyQueue);
 
-        if (historyList.size() >= end) {
-            return Lists.reverse(new ArrayList<>(historyQueue)).subList(start, end);
+        if (historyList.size() >= newEnd) {
+            return Lists.reverse(new ArrayList<>(historyQueue)).subList(newStart, newEnd);
         } else {
             return new ArrayList<>();
         }
@@ -366,14 +366,15 @@ public abstract class AbstractPlayer extends AudioEventAdapterWrapped implements
     public boolean canProvide() {
         LavaplayerPlayerWrapper lavaplayerPlayer = (LavaplayerPlayerWrapper) player;
         lastFrame = lavaplayerPlayer.provide();
+        boolean isProvide = true;
 
         if(lastFrame == null) {
             audioLossCounter.onLoss();
-            return false;
+            isProvide = false;
         } else {
             audioLossCounter.onSuccess();
-            return true;
         }
+        return isProvide;
     }
 
     public AudioLossCounter getAudioLossCounter() {

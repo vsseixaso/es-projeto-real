@@ -376,8 +376,8 @@ public abstract class FredBoat {
     @Nullable
     public static TextChannel getTextChannelById(long id) {
         for (FredBoat fb : shards) {
-            TextChannel tc = fb.getJda().getTextChannelById(id);
-            if (tc != null) return tc;
+            TextChannel textChannel = fb.getJda().getTextChannelById(id);
+            if (textChannel != null) return textChannel;
         }
         return null;
     }
@@ -385,8 +385,8 @@ public abstract class FredBoat {
     @Nullable
     public static VoiceChannel getVoiceChannelById(long id) {
         for (FredBoat fb : shards) {
-            VoiceChannel vc = fb.getJda().getVoiceChannelById(id);
-            if (vc != null) return vc;
+            VoiceChannel voiceChannel = fb.getJda().getVoiceChannelById(id);
+            if (voiceChannel != null) return voiceChannel;
         }
         return null;
     }
@@ -394,17 +394,17 @@ public abstract class FredBoat {
     @Nullable
     public static Guild getGuildById(long id) {
         for (FredBoat fb : shards) {
-            Guild g = fb.getJda().getGuildById(id);
-            if (g != null) return g;
+            Guild guild = fb.getJda().getGuildById(id);
+            if (guild != null) return guild;
         }
         return null;
     }
 
     @Nullable
     public static User getUserById(long id) {
-        for (FredBoat fb : shards) {
-            User u = fb.getJda().getUserById(id);
-            if (u != null) return u;
+        for (FredBoat fredBoat : shards) {
+            User user = fredBoat.getJda().getUserById(id);
+            if (user != null) return user;
         }
         return null;
     }
