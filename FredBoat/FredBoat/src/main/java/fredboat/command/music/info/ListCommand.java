@@ -53,6 +53,11 @@ public class ListCommand extends Command implements IMusicCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 10100;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         GuildPlayer player = PlayerRegistry.getOrCreate(context.guild);
 
@@ -153,7 +158,6 @@ public class ListCommand extends Command implements IMusicCommand {
 
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpListCommand");

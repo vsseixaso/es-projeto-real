@@ -179,16 +179,19 @@ public class PlayCommand extends Command implements IMusicCommand, ICommandRestr
         });
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         String usage = "{0}{1} <url> OR {0}{1} <search-term>\n#";
         return usage + context.i18nFormat("helpPlayCommand", BotConstants.DOCS_URL);
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.USER;
+    }
+
+    @Override
+    public int getCommandRank() {
+        return 10050;
     }
 }

@@ -142,7 +142,6 @@ public class KickCommand extends Command implements IModerationCommand {
         return true;
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1} <user> <reason>\n#" + context.i18n("helpKickCommand");

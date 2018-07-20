@@ -30,6 +30,7 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -191,8 +192,19 @@ public class Ratelimit {
         }
 
         @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Rate rate = (Rate) o;
+            return id == rate.id &&
+                    lastUpdated == rate.lastUpdated &&
+                    Objects.equals(timeStamps, rate.timeStamps);
+        }
+
+        @Override
         public int hashCode() {
-            return Long.hashCode(id);
+
+            return Objects.hash(id, lastUpdated, timeStamps);
         }
     }
 }

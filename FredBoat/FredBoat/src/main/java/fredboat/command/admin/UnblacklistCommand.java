@@ -77,7 +77,6 @@ public class UnblacklistCommand extends Command implements ICommandRestricted {
         return "{0}{1} @<user>\n#Remove a user from the blacklist.";
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.BOT_OWNER;

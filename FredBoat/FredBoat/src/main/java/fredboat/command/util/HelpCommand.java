@@ -76,7 +76,6 @@ public class HelpCommand extends Command implements IUtilCommand {
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1} OR {0}{1} <command>\n#" + context.i18n("helpHelpCommand");

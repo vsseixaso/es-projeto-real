@@ -81,7 +81,6 @@ public class PlayerDebugCommand extends Command implements ICommandRestricted {
         return "{0}{1}\n#Show debug information about the music player of this guild.";
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.BOT_OWNER;

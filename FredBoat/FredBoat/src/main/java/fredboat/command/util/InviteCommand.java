@@ -47,7 +47,6 @@ public class InviteCommand extends Command implements IUtilCommand {
         context.reply(send + "\n" + str);
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         String usage = "{0}{1}\n#";

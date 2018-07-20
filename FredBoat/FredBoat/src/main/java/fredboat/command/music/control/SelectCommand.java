@@ -54,6 +54,11 @@ public class SelectCommand extends Command implements IMusicCommand, ICommandRes
     }
 
     @Override
+    public int getCommandRank() {
+        return 10900;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         select(context);
     }
@@ -136,13 +141,11 @@ public class SelectCommand extends Command implements IMusicCommand, ICommandRes
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1} n OR {0}{2} n\n#" + context.i18n("helpSelectCommand");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.USER;

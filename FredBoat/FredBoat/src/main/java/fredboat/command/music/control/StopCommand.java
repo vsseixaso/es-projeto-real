@@ -43,6 +43,11 @@ public class StopCommand extends Command implements IMusicCommand, ICommandRestr
     }
 
     @Override
+    public int getCommandRank() {
+        return 10250;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         GuildPlayer player = PlayerRegistry.getOrCreate(context.guild);
         int tracksCount = player.getTrackCount();
@@ -63,13 +68,11 @@ public class StopCommand extends Command implements IMusicCommand, ICommandRestr
         player.leaveVoiceChannelRequest(context, true);
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpStopCommand");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.DJ;

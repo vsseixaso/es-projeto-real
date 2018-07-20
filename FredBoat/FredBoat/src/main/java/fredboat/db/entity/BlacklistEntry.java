@@ -30,6 +30,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 /**
  * Created by napster on 26.04.17.
@@ -75,11 +76,24 @@ public class BlacklistEntry implements IEntity {
     }
 
     @Override
-    public int hashCode() {
-        return Long.hashCode(id);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BlacklistEntry that = (BlacklistEntry) o;
+        return id == that.id &&
+                level == that.level &&
+                rateLimitReached == that.rateLimitReached &&
+                rateLimitReachedTimestamp == that.rateLimitReachedTimestamp &&
+                blacklistedTimestamp == that.blacklistedTimestamp;
     }
 
-    //Boilerplate code below
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, level, rateLimitReached, rateLimitReachedTimestamp, blacklistedTimestamp);
+    }
+
+//Boilerplate code below
 
     public BlacklistEntry() {
     }

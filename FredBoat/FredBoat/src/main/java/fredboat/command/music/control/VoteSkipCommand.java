@@ -167,13 +167,11 @@ public class VoteSkipCommand extends Command implements IMusicCommand, ICommandR
         context.reply(embed.build());
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return context.i18n("helpVoteSkip");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.USER;

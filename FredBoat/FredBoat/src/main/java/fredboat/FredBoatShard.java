@@ -206,7 +206,6 @@ public class FredBoatShard extends FredBoat {
         return shardId;
     }
 
-    @Nonnull
     @Override
     public JDA.ShardInfo getShardInfo() {
         //assuming this is never null because we are forcing sharding in the Config
@@ -214,7 +213,6 @@ public class FredBoatShard extends FredBoat {
     }
 
     @Override
-    @Nonnull
     public JDA getJda() {
         return jda;
     }
@@ -279,7 +277,6 @@ public class FredBoatShard extends FredBoat {
     protected static class ShardBuilder {
         private static JDABuilder defaultShardBuilder;
 
-        @Nonnull
         protected synchronized static JDABuilder getDefaultShardBuilder(@Nonnull EventListenerBoat mainListener) {
             if (defaultShardBuilder == null) {
                 JDABuilder builder = new JDABuilder(AccountType.BOT)

@@ -409,7 +409,6 @@ public abstract class FredBoat {
         return null;
     }
 
-    @Nonnull
     public static FredBoat getShard(@Nonnull JDA jda) {
         int sId = jda.getShardInfo() == null ? 0 : jda.getShardInfo().getShardId();
         for (FredBoat fb : shards) {

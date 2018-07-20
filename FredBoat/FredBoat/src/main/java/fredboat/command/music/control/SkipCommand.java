@@ -54,6 +54,11 @@ public class SkipCommand extends Command implements IMusicCommand, ICommandRestr
         super(name, aliases);
     }
 
+    @Override
+    public int getCommandRank() {
+        return 10200;
+    }
+
     /**
      * Represents the relationship between a <b>guild's id</b> and <b>skip cooldown</b>.
      */
@@ -235,14 +240,12 @@ public class SkipCommand extends Command implements IMusicCommand, ICommandRestr
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         String usage = "{0}{1} OR {0}{1} n OR {0}{1} n-m OR {0}{1} @Users...\n#";
         return usage + context.i18n("helpSkipCommand");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.USER;

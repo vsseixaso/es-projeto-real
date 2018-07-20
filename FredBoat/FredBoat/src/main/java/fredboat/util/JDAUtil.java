@@ -149,7 +149,6 @@ public class JDAUtil {
     /**
      * @return Returns a non-distinct stream over all Guild entities in the provided shards.
      */
-    @Nonnull
     @CheckReturnValue
     public static Stream<Guild> getGuilds(@Nonnull Collection<FredBoat> shards) {
         return shards.stream().flatMap(fb -> fb.getJda().getGuildCache().stream());
@@ -158,7 +157,6 @@ public class JDAUtil {
     /**
      * @return Returns a non-distinct stream over all User entities in the provided shards.
      */
-    @Nonnull
     @CheckReturnValue
     public static Stream<User> getUsers(@Nonnull Collection<FredBoat> shards) {
         return shards.stream().flatMap(fb -> fb.getJda().getUserCache().stream());

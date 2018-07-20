@@ -193,7 +193,6 @@ public class DebugCommand extends Command implements IMaintenanceCommand, IComma
         return "{0}{1} OR {0}{1} <guildId>\n#Display debug information for the selected guild";
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.ADMIN;

@@ -127,7 +127,6 @@ public class MathCommand extends Command implements IUtilCommand {
 
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return String.join("\n",

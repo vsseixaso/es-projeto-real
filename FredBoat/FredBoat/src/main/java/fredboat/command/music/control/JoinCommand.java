@@ -44,6 +44,11 @@ public class JoinCommand extends Command implements IMusicCommand, ICommandRestr
     }
 
     @Override
+    public int getCommandRank() {
+        return 10400;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         GuildPlayer player = PlayerRegistry.getOrCreate(context.guild);
         VoiceChannel vc = player.getUserCurrentVoiceChannel(context.invoker);
@@ -61,13 +66,11 @@ public class JoinCommand extends Command implements IMusicCommand, ICommandRestr
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpJoinCommand");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.USER;

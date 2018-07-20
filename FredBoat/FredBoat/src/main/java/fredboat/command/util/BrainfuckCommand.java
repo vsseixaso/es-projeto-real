@@ -146,7 +146,6 @@ public class BrainfuckCommand extends Command implements IUtilCommand {
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         String usage = "{0}{1} <code> [input]\n#";

@@ -38,4 +38,6 @@ public abstract class Command implements ICommand {
         this.name = name;
         this.aliases = Arrays.asList(aliases);
     }
+
+    public abstract int getCommandRank();
 }

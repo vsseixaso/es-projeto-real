@@ -48,6 +48,11 @@ public class LeaveCommand extends Command implements IMusicCommand, ICommandRest
     }
 
     @Override
+    public int getCommandRank() {
+        return 10450;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         try {
             GuildPlayer player = PlayerRegistry.getOrCreate(context.guild);
@@ -59,13 +64,11 @@ public class LeaveCommand extends Command implements IMusicCommand, ICommandRest
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpLeaveCommand");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.DJ;

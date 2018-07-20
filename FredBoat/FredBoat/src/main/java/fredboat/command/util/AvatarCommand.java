@@ -48,7 +48,6 @@ public class AvatarCommand extends Command implements IUtilCommand {
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1} @<username>\n#" + context.i18n("helpAvatarCommand");

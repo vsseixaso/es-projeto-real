@@ -96,7 +96,6 @@ public class UserInfoCommand extends Command implements IUtilCommand {
         );
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1} OR {0}{1} <user>\n#" + context.i18n("helpUserInfoCommand");

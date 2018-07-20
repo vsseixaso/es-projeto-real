@@ -45,6 +45,11 @@ public class RewindCommand extends Command implements IMusicCommand, ICommandRes
     }
 
     @Override
+    public int getCommandRank() {
+        return 10650;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         GuildPlayer player = PlayerRegistry.getExisting(context.guild);
 
@@ -75,7 +80,6 @@ public class RewindCommand extends Command implements IMusicCommand, ICommandRes
         context.reply(context.i18nFormat("rewSuccess", player.getPlayingTrack().getEffectiveTitle(), TextUtils.formatTime(t)));
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         String usage = "{0}{1} [[hh:]mm:]ss\n#";
@@ -83,7 +87,6 @@ public class RewindCommand extends Command implements IMusicCommand, ICommandRes
         return usage + context.i18n("helpRewindCommand") + example;
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.DJ;

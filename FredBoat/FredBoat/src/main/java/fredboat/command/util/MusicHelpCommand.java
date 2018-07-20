@@ -44,6 +44,7 @@ import fredboat.util.Emojis;
 import fredboat.util.TextUtils;
 import net.dv8tion.jda.core.Permission;
 
+import java.io.Serializable;
 import java.util.*;
 import javax.annotation.Nonnull;
 
@@ -51,6 +52,11 @@ public class MusicHelpCommand extends Command implements IUtilCommand {
 
     public MusicHelpCommand(String name, String... aliases) {
         super(name, aliases);
+    }
+
+    @Override
+    public int getCommandRank() {
+        return 10999;
     }
 
     @Override
@@ -120,7 +126,6 @@ public class MusicHelpCommand extends Command implements IUtilCommand {
         );
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpMusicHelpCommand");
@@ -129,7 +134,9 @@ public class MusicHelpCommand extends Command implements IUtilCommand {
     /**
      * Sort the commands in a sensible way to display them to the user
      */
-    static class MusicCommandsComparator implements Comparator<Command> {
+    static class MusicCommandsComparator implements Comparator<Command>,Serializable {
+
+        private static final long serialVersionUID = 1L;
 
         @Override
         public int compare(Command o1, Command o2) {
@@ -142,56 +149,8 @@ public class MusicHelpCommand extends Command implements IUtilCommand {
          */
         private static int getCommandRank(Command c) {
 
-            int result;
+            return c.getCommandRank();
 
-            if (c instanceof PlayCommand) {
-                result = 10050;
-            } else if (c instanceof ListCommand) {
-                result = 10100;
-            } else if (c instanceof NowplayingCommand) {
-                result = 10150;
-            } else if (c instanceof SkipCommand) {
-                result = 10200;
-            } else if (c instanceof StopCommand) {
-                result = 10250;
-            } else if (c instanceof PauseCommand) {
-                result = 10300;
-            } else if (c instanceof UnpauseCommand) {
-                result = 10350;
-            } else if (c instanceof JoinCommand) {
-                result = 10400;
-            } else if (c instanceof LeaveCommand) {
-                result = 10450;
-            } else if (c instanceof RepeatCommand) {
-                result = 10500;
-            } else if (c instanceof ShuffleCommand) {
-                result = 10550;
-            } else if (c instanceof ReshuffleCommand) {
-                result = 10560;
-            } else if (c instanceof ForwardCommand) {
-                result = 10600;
-            } else if (c instanceof RewindCommand) {
-                result = 10650;
-            } else if (c instanceof SeekCommand) {
-                result = 10700;
-            } else if (c instanceof RestartCommand) {
-                result = 10750;
-            } else if (c instanceof ExportCommand) {
-                result = 10800;
-            } else if (c instanceof PlaySplitCommand) {
-                result = 10850;
-            } else if (c instanceof SelectCommand) {
-                result = 10900;
-            } else if (c instanceof GensokyoRadioCommand) {
-                result = 10950;
-            } else if (c instanceof VolumeCommand) {
-                result = 10970;
-            } else {
-                //everything else
-                //newly added commands will land here, just add them to the giant if construct above to assign them a fixed place
-                result = 10999;
-            }
-            return result;
         }
     }
 }

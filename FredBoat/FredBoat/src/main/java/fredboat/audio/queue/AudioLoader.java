@@ -296,8 +296,8 @@ public class AudioLoader implements AudioLoadResultHandler {
 
             AudioTrack newAt = at.makeClone();
             newAt.setPosition(startPos);
-
-            SplitAudioTrackContext atc = new SplitAudioTrackContext(newAt, ic.getMember(), startPos, endPos, pair.getRight());
+            AudioInfo audioInfo = new AudioInfo(startPos,endPos,pair.getRight());
+            SplitAudioTrackContext atc = new SplitAudioTrackContext(newAt, ic.getMember(), audioInfo);
 
             list.add(atc);
             gplayer.queue(atc);

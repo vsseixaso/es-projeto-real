@@ -81,7 +81,6 @@ public class SetAvatarCommand extends Command implements ICommandRestricted {
         }
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.BOT_ADMIN;
