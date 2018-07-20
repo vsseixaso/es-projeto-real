@@ -92,7 +92,7 @@ public class Config {
     private String prefix = DEFAULT_PREFIX;
     private boolean restServerEnabled = true;
     private List<String> adminIds = new ArrayList<>();
-    private boolean useAutoBlacklist = false;
+    private boolean useAutoBlacklist;
     private String game = "";
     private List<LavalinkHost> lavalinkHosts = new ArrayList<>();
     private String openWeatherKey;

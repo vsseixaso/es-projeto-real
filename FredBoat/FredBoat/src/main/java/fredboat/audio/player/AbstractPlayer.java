@@ -72,7 +72,7 @@ public abstract class AbstractPlayer extends AudioEventAdapterWrapped implements
     private static AudioPlayerManager playerManager;
     protected final IPlayer player;
     ITrackProvider audioTrackProvider;
-    private AudioFrame lastFrame = null;
+    private AudioFrame lastFrame;
     protected AudioTrackContext context;
     private final AudioLossCounter audioLossCounter = new AudioLossCounter();
 
@@ -80,7 +80,7 @@ public abstract class AbstractPlayer extends AudioEventAdapterWrapped implements
     protected Consumer<Throwable> onErrorHook;
 
     private static final int MAX_HISTORY_SIZE = 20;
-    private AudioTrackContext queuedTrackInHistory = null;
+    private AudioTrackContext queuedTrackInHistory;
     protected ConcurrentLinkedQueue<AudioTrackContext> historyQueue = new ConcurrentLinkedQueue<>();
 
     @SuppressWarnings("LeakingThisInConstructor")

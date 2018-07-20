@@ -40,8 +40,8 @@ public class Bootloader {
 
     private static JSONArray command;
     private static String jarName;
-    private static int recentBoots = 0;
-    private static long lastBoot = 0L;
+    private static int recentBoots;
+    private static long lastBoot;
 
     public static void main(String[] args) throws IOException, InterruptedException {
         OUTER:

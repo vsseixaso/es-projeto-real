@@ -40,7 +40,7 @@ public class BrainfuckCommand extends Command implements IUtilCommand {
         super(name, aliases);
     }
 
-    ByteBuffer bytes = null;
+    ByteBuffer bytes;
     char[] code;
     public static final int MAX_CYCLE_COUNT = 10000;
 

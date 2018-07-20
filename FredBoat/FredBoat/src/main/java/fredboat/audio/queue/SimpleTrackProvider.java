@@ -34,7 +34,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class SimpleTrackProvider extends AbstractTrackProvider {
 
     private volatile ConcurrentLinkedQueue<AudioTrackContext> queue = new ConcurrentLinkedQueue<>();
-    private AudioTrackContext lastTrack = null;
+    private AudioTrackContext lastTrack;
     private List<AudioTrackContext> cachedShuffledQueue = new ArrayList<>();
     private boolean shouldUpdateShuffledQueue = true;
 

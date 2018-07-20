@@ -60,7 +60,7 @@ public final class AkinatorListener extends UserListener {
     private final String signature;
     private final String session;
     private Guess guess;
-    private boolean lastQuestionWasGuess = false;
+    private boolean lastQuestionWasGuess;
 
     private long lastActionReceived = System.currentTimeMillis();
     private Future timeoutTask;
