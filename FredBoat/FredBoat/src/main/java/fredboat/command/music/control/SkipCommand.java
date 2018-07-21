@@ -203,7 +203,7 @@ public class SkipCommand extends Command implements IMusicCommand, ICommandRestr
         }
 
 
-        if (userAtcIds.size() > 0) {
+        if (userAtcIds.isEmpty()) {
 
             String title = player.getPlayingTrack().getEffectiveTitle();
             player.skipTracks(userAtcIds);

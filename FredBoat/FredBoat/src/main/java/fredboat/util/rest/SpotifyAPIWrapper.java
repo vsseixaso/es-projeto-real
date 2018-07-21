@@ -71,7 +71,7 @@ public class SpotifyAPIWrapper {
         private static final SpotifyAPIWrapper instance = new SpotifyAPIWrapper();
     }
 
-    private volatile long accessTokenExpires = 0;
+    private volatile long accessTokenExpires;
     private volatile String accessToken = "";
 
     /**

@@ -36,9 +36,9 @@ public class IdentifierContext extends LeakSafeContext {
 
     public final FredBoat shard;
     public final String identifier;
-    private boolean quiet = false;
-    private boolean split = false;
-    private long position = 0L;
+    private boolean quiet;
+    private boolean split;
+    private long position;
 
     public IdentifierContext(String identifier, TextChannel textChannel, Member member) {
         super(textChannel, member);

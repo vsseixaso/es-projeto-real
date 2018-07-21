@@ -39,13 +39,13 @@ public class YoutubeVideo {
 
     private static final Logger log = LoggerFactory.getLogger(YoutubeVideo.class);
 
-    String id = null;
-    String name = null;
-    String duration = null;//Youtube has strange duration strings suchs as PT2H3M33S
-    String description = null;
-    String channelId = null;
-    String channelTitle = null;
-    boolean isStream = false;
+    String id;
+    String name;
+    String duration;//Youtube has strange duration strings suchs as PT2H3M33S
+    String description;
+    String channelId;
+    String channelTitle;
+    boolean isStream;
 
     public String getId() {
         return id;

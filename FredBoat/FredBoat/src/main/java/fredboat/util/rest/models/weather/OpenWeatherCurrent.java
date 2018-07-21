@@ -38,8 +38,6 @@ public class OpenWeatherCurrent implements RetrievedWeather {
 
     @JsonProperty("weather")
     private List<WeatherOpenWeather> weather;
-    @JsonProperty("base")
-    private String base;
     @JsonProperty("main")
     private WeatherMainOpenWeather weatherMainOpenWeather;
     @JsonProperty("visibility")
@@ -143,7 +141,7 @@ public class OpenWeatherCurrent implements RetrievedWeather {
      */
     @Override
     public String getWeatherDescription() {
-        if (weather.size() > 0) {
+        if (weather.isEmpty()) {
             return weather.get(0).getMain() + " - " + weather.get(0).getDescription();
         }
         return "";
@@ -173,7 +171,7 @@ public class OpenWeatherCurrent implements RetrievedWeather {
 
         String iconName = "";
         String url = "";
-        if (weather != null && weather.size() > 0) {
+        if (weather != null && weather.isEmpty()) {
             iconName = weather.get(0).getIcon();
         }
         if (iconName.length() != 0) {

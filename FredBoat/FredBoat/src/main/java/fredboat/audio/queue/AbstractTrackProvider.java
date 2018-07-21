@@ -33,7 +33,7 @@ import java.util.List;
 public abstract class AbstractTrackProvider implements ITrackProvider {
 
     private RepeatMode repeatMode = RepeatMode.OFF;
-    private boolean shuffle = false;
+    private boolean shuffle;
 
     public RepeatMode getRepeatMode() {
         return repeatMode;

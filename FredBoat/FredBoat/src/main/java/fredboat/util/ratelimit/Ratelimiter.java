@@ -73,7 +73,7 @@ public class Ratelimiter {
     }
 
     private final List<Ratelimit> ratelimits;
-    private Blacklist autoBlacklist = null;
+    private Blacklist autoBlacklist;
 
     private Ratelimiter() {
         Set<Long> whitelist = new ConcurrentHashSet<>();

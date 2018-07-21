@@ -113,14 +113,14 @@ public class PlaylistImportSourceManager implements AudioSourceManager, Playlist
      * @return null or a string array containing the service name at [0] and the paste id at [1] of the requested playlist
      */
     private String[] parse(String identifier) {
-        String pasteId;
-        Matcher m;
         Matcher serviceNameMatcher = PasteServiceConstants.SERVICE_NAME_PATTERN.matcher(identifier);
 
         if (!serviceNameMatcher.find()) {
             return null;
         }
 
+        Matcher m;
+        String pasteId;
         String serviceName = serviceNameMatcher.group(1).trim().toLowerCase();
 
         switch (serviceName) {

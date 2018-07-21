@@ -65,8 +65,8 @@ public class AudioLoader implements AudioLoadResultHandler {
     private final AudioPlayerManager playerManager;
     private final GuildPlayer gplayer;
     private final ConcurrentLinkedQueue<IdentifierContext> identifierQueue = new ConcurrentLinkedQueue<>();
-    private IdentifierContext context = null;
-    private volatile boolean isLoading = false;
+    private IdentifierContext context;
+    private volatile boolean isLoading;
 
     public AudioLoader(ITrackProvider trackProvider, AudioPlayerManager playerManager, GuildPlayer gplayer) {
         this.trackProvider = trackProvider;
