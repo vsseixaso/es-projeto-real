@@ -232,11 +232,11 @@ public class MusicPersistenceHandler {
                     AudioTrackContext atc;
                     JSONObject split = json.optJSONObject("split");
                     if(split != null) {
-                        atc = new SplitAudioTrackContext(at, member,
-                                split.getLong("startPos"),
-                                split.getLong("endPos"),
-                                split.getString("title")
-                        );
+                        AudioInfo audioInfo = new AudioInfo(
+                        			split.getLong("startPos"),
+                        			split.getLong("endPos"),
+                        			split.getString("title"));
+                    	atc = new SplitAudioTrackContext(at, member,audioInfo);
                         at.setPosition(split.getLong("startPos"));
 
                         if (isFirst[0]) {

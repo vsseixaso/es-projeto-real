@@ -46,6 +46,11 @@ public class PlaySplitCommand extends Command implements IMusicCommand, ICommand
     }
 
     @Override
+    public int getCommandRank() {
+        return 10850;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
 
         if (!context.hasArguments()) {
@@ -65,13 +70,11 @@ public class PlaySplitCommand extends Command implements IMusicCommand, ICommand
         context.deleteMessage();
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1} <url>\n#" + context.i18n("helpPlaySplitCommand");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.USER;

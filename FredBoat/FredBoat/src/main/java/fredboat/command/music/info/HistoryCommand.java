@@ -110,7 +110,6 @@ public class HistoryCommand extends Command implements IMusicCommand {
       context.reply(mb.build());
   }
 
-  @Nonnull
   @Override
   public String help(@Nonnull Context context) {
       String usage = "{0}{1}\n#";

@@ -47,6 +47,11 @@ public class VolumeCommand extends Command implements IMusicCommand, ICommandRes
     }
 
     @Override
+    public int getCommandRank() {
+        return 10970;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
 
         if(Config.CONFIG.getDistribution().volumeSupported()) {
@@ -71,13 +76,11 @@ public class VolumeCommand extends Command implements IMusicCommand, ICommandRes
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1} <0-150>\n#" + context.i18n("helpVolumeCommand");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.DJ;

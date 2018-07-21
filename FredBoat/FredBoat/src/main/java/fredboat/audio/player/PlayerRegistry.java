@@ -54,12 +54,10 @@ public class PlayerRegistry {
         instance().REGISTRY.put(guildId, guildPlayer);
     }
 
-    @Nonnull
     public static GuildPlayer getOrCreate(@Nonnull Guild guild) {
         return getOrCreate(guild.getJDA(), guild.getIdLong());
     }
 
-    @Nonnull
     public static GuildPlayer getOrCreate(JDA jda, long guildId) {
         GuildPlayer player = instance().REGISTRY.get(guildId);
         if (player == null) {

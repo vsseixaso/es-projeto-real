@@ -206,7 +206,6 @@ public class MALCommand extends Command implements IUtilCommand {
         return true;
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1} <search-term>\n#" + context.i18n("helpMALCommand");

@@ -201,7 +201,6 @@ public abstract class Context {
 
     private ResourceBundle i18n;
 
-    @Nonnull
     public ResourceBundle getI18n() {
         if (this.i18n == null) {
             this.i18n = I18n.get(getGuild());

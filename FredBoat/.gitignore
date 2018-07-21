@@ -140,3 +140,4 @@ gc-*.log
 /feature_flags.properties
 .gradle/*
 */out/*
+/.gradle/

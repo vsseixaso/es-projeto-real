@@ -139,7 +139,6 @@ public class EvalCommand extends Command implements ICommandRestricted {
         return "{0}{1} <Java-code>\\n#Run the provided Java code.";
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.BOT_OWNER;

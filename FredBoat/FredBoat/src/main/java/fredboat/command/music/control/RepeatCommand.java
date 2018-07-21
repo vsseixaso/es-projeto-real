@@ -45,6 +45,11 @@ public class RepeatCommand extends Command implements IMusicCommand, ICommandRes
     }
 
     @Override
+    public int getCommandRank() {
+        return 10500;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         GuildPlayer player = PlayerRegistry.getOrCreate(context.guild);
 
@@ -93,14 +98,12 @@ public class RepeatCommand extends Command implements IMusicCommand, ICommandRes
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         String usage = "{0}{1} single|all|off\n#";
         return usage + context.i18n("helpRepeatCommand");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.DJ;

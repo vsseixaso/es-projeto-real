@@ -82,7 +82,6 @@ public class GetNodeCommand extends Command implements ICommandRestricted {
         return "{0}{1}\n#Show information about the currently assigned lavalink node of this guild.";
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.BOT_ADMIN;

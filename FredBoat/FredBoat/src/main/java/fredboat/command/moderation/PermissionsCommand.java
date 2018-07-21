@@ -247,7 +247,6 @@ public class PermissionsCommand extends Command implements IModerationCommand {
         return out;
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         String usage = "{0}{1} add <role/user>\n{0}{1} del <role/user>\n{0}{1} list\n#";

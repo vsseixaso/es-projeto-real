@@ -60,6 +60,11 @@ public class NowplayingCommand extends Command implements IMusicCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 10150;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         GuildPlayer player = PlayerRegistry.getOrCreate(context.guild);
 
@@ -244,7 +249,6 @@ public class NowplayingCommand extends Command implements IMusicCommand {
                 .setDescription(atc.i18nFormat("npLoadedDefault", desc, at.getSourceManager().getSourceName()));
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpNowplayingCommand");

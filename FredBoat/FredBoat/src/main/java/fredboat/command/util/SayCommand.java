@@ -55,7 +55,6 @@ public class SayCommand extends Command implements IUtilCommand {
 
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1} <text>\n#" + context.i18n("helpSayCommand");

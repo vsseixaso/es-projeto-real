@@ -115,7 +115,6 @@ public class DiscordUtil {
         }
     }
 
-    @Nonnull
     public static DiscordAppInfo getApplicationInfo(@Nonnull JDA jda) {
         //double checked lock pattern
         DiscordAppInfo info = selfDiscordAppInfo;
@@ -132,7 +131,6 @@ public class DiscordUtil {
         return info;
     }
 
-    @Nonnull
     public static String getUserId(@Nonnull String token) {
         Http.SimpleRequest request = Http.get(Requester.DISCORD_API_PREFIX + "/users/@me")
                 .auth("Bot " + token)

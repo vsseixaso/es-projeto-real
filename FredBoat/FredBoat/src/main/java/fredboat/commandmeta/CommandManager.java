@@ -72,36 +72,19 @@ public class CommandManager {
         totalCommandsExecuted.incrementAndGet();
         Metrics.commandsExecuted.labels(invoked.getClass().getSimpleName()).inc();
 
-        if (guild.getJDA().getSelfUser().getId().equals(BotConstants.PATRON_BOT_ID)
-                && Config.CONFIG.getDistribution() == DistributionEnum.PATRON
-                && guild.getId().equals(BotConstants.FREDBOAT_HANGOUT_ID)) {
-            log.info("Ignored command because patron bot is not allowed in FredBoatHangout");
-            return;
-        }
+        verifyPatronUser(guild);
 
-        if (FeatureFlags.PATRON_VALIDATION.isActive()) {
-            PatronageChecker.Status status = PatronageCheckerHolder.instance.getStatus(guild);
-            if (!status.isValid()) {
-                String msg = "Access denied. This bot can only be used if invited from <https://patron.fredboat.com/> "
-                        + "by someone who currently has a valid pledge on Patreon.\n**Denial reason:** " + status.getReason() + "\n\n";
+        verifyPatronValidation(context, guild);
 
-                msg += "Do you believe this to be a mistake? If so reach out to Fre_d on Patreon <https://www.patreon.com/fredboat>";
+        configPermissions(guild, channel);
 
-                context.reply(msg);
-                return;
-            }
-        }
+        musicCommands(context, guild, invoked, channel, invoker);
 
-        if (Config.CONFIG.getDistribution() == DistributionEnum.MUSIC
-                && DiscordUtil.isPatronBotPresentAndOnline(guild)
-                && guild.getMemberById(BotConstants.PATRON_BOT_ID) != null
-                && guild.getMemberById(BotConstants.PATRON_BOT_ID).hasPermission(channel, Permission.MESSAGE_WRITE, Permission.MESSAGE_READ)
-                && Config.CONFIG.getPrefix().equals(Config.DEFAULT_PREFIX)
-                && !guild.getId().equals(BotConstants.FREDBOAT_HANGOUT_ID)) {
-            log.info("Ignored command because patron bot is able to use that channel");
-            return;
-        }
+        commands(context, guild, invoked, channel, invoker);
 
+    }
+
+    private static boolean musicCommands(CommandContext context, Guild guild, Command invoked, TextChannel channel, Member invoker) {
         //Hardcode music commands in FredBoatHangout. Blacklist any channel that isn't #general or #staff, but whitelist Frederikam
         if ((invoked instanceof IMusicCommand || invoked instanceof AkinatorCommand) // the hate is real
                 && guild.getId().equals(BotConstants.FREDBOAT_HANGOUT_ID)
@@ -114,10 +97,13 @@ public class CommandManager {
                 context.replyWithName("Please don't spam music commands outside of <#174821093633294338>.",
                         msg -> CentralMessaging.restService.schedule(() -> CentralMessaging.deleteMessage(msg),
                                 5, TimeUnit.SECONDS));
-                return;
+                return true;
             }
         }
+        return false;
+    }
 
+    private static void commands(CommandContext context, Guild guild, Command invoked, TextChannel channel, Member invoker) {
         if (disabledCommands.contains(invoked)) {
             context.replyWithName("Sorry the `"+ context.cmdName +"` command is currently disabled. Please try again later");
             return;
@@ -144,7 +130,45 @@ public class CommandManager {
             Metrics.commandExceptions.labels(e.getClass().getSimpleName()).inc();
             TextUtils.handleException(e, context);
         }
+    }
 
+    private static boolean configPermissions(Guild guild, TextChannel channel) {
+        if (Config.CONFIG.getDistribution() == DistributionEnum.MUSIC
+                && DiscordUtil.isPatronBotPresentAndOnline(guild)
+                && guild.getMemberById(BotConstants.PATRON_BOT_ID) != null
+                && guild.getMemberById(BotConstants.PATRON_BOT_ID).hasPermission(channel, Permission.MESSAGE_WRITE, Permission.MESSAGE_READ)
+                && Config.CONFIG.getPrefix().equals(Config.DEFAULT_PREFIX)
+                && !guild.getId().equals(BotConstants.FREDBOAT_HANGOUT_ID)) {
+            log.info("Ignored command because patron bot is able to use that channel");
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean verifyPatronValidation(CommandContext context, Guild guild) {
+        if (FeatureFlags.PATRON_VALIDATION.isActive()) {
+            PatronageChecker.Status status = PatronageCheckerHolder.instance.getStatus(guild);
+            if (!status.isValid()) {
+                String msg = "Access denied. This bot can only be used if invited from <https://patron.fredboat.com/> "
+                        + "by someone who currently has a valid pledge on Patreon.\n**Denial reason:** " + status.getReason() + "\n\n";
+
+                msg += "Do you believe this to be a mistake? If so reach out to Fre_d on Patreon <https://www.patreon.com/fredboat>";
+
+                context.reply(msg);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean verifyPatronUser(Guild guild) {
+        if (guild.getJDA().getSelfUser().getId().equals(BotConstants.PATRON_BOT_ID)
+                && Config.CONFIG.getDistribution() == DistributionEnum.PATRON
+                && guild.getId().equals(BotConstants.FREDBOAT_HANGOUT_ID)) {
+            log.info("Ignored command because patron bot is not allowed in FredBoatHangout");
+            return true;
+        }
+        return false;
     }
 
     //holder class pattern for the checker

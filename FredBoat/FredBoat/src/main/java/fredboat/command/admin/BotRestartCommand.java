@@ -60,7 +60,6 @@ public class BotRestartCommand extends Command implements ICommandRestricted {
         return "{0}{1}\n#Restarts the bot.";
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.BOT_ADMIN;

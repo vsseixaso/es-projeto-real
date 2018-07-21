@@ -109,14 +109,12 @@ public class ConfigCommand extends Command implements IModerationCommand, IComma
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         String usage = "{0}{1} OR {0}{1} <key> <value>\n#";
         return usage + context.i18n("helpConfigCommand");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.BASE;

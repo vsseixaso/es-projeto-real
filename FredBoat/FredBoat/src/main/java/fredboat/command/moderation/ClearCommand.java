@@ -97,7 +97,6 @@ public class ClearCommand extends Command implements IModerationCommand {
         );
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpClearCommand");

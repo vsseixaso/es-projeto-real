@@ -224,7 +224,6 @@ public class SearchUtil {
         /**
          * @return The result of the search (which may be empty but not null).
          */
-        @Nonnull
         AudioPlaylist searchSync(SearchProvider provider, String query, int timeoutMillis) throws SearchingException {
             if (FeatureFlags.FORCE_SOUNDCLOUD_SEARCH.isActive()) {
                 provider = SearchProvider.SOUNDCLOUD;

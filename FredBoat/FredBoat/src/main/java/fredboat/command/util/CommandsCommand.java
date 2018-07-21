@@ -142,7 +142,6 @@ public class CommandsCommand extends Command implements IUtilCommand {
         context.reply(out);
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpCommandsCommand");

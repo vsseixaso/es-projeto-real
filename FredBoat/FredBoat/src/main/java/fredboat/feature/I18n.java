@@ -81,7 +81,6 @@ public class I18n {
         log.info("Loaded " + LANGS.size() + " languages: " + LANGS);
     }
 
-    @Nonnull
     public static ResourceBundle get(@Nullable Guild guild) {
         if (guild == null) {
             return DEFAULT.getProps();

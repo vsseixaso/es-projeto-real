@@ -74,7 +74,6 @@ public class ServerInfoCommand extends Command implements IUtilCommand {
         context.reply(eb.build());
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpServerInfoCommand");

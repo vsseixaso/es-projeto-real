@@ -47,6 +47,11 @@ public class ForwardCommand extends Command implements IMusicCommand, ICommandRe
     }
 
     @Override
+    public int getCommandRank() {
+        return 10600;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         GuildPlayer player = PlayerRegistry.getExisting(context.guild);
 
@@ -78,7 +83,6 @@ public class ForwardCommand extends Command implements IMusicCommand, ICommandRe
         context.reply(context.i18nFormat("fwdSuccess", atc.getEffectiveTitle(), TextUtils.formatTime(t)));
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         String usage = "{0}{1} [[hh:]mm:]ss\n#";
@@ -86,7 +90,6 @@ public class ForwardCommand extends Command implements IMusicCommand, ICommandRe
         return usage + context.i18n("helpForwardCommand") + example;
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.DJ;

@@ -43,6 +43,11 @@ public class ShuffleCommand extends Command implements IMusicCommand, ICommandRe
     }
 
     @Override
+    public int getCommandRank() {
+        return 10550;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         GuildPlayer player = PlayerRegistry.getOrCreate(context.guild);
         player.setShuffle(!player.isShuffle());
@@ -54,13 +59,11 @@ public class ShuffleCommand extends Command implements IMusicCommand, ICommandRe
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpShuffleCommand");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.DJ;

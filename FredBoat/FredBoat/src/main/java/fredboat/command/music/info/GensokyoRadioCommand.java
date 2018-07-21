@@ -41,13 +41,17 @@ public class GensokyoRadioCommand extends Command implements IMusicCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 10950;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         EmbedBuilder eb = CentralMessaging.addFooter(
                 NowplayingCommand.getGensokyoRadioEmbed(context), context.guild.getSelfMember());
         context.reply(eb.build());
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpGensokyoRadioCommand");

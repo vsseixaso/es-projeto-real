@@ -185,7 +185,7 @@ public abstract class ProvideJDASingleton {
     }
 
     @BeforeEach
-    public void bumpAttemptedTests() {
+    public static void bumpAttemptedTests() {
         attemptedTests++;
         totalAttempted++;
     }

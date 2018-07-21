@@ -91,7 +91,6 @@ public class LanguageCommand extends Command implements IModerationCommand {
         context.reply(mb.build());
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1} OR {0}{1} <code>\n#" + context.i18n("helpLanguageCommand");

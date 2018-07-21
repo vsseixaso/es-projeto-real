@@ -291,7 +291,7 @@ public class GuildPlayer extends AbstractPlayer {
             return null;
         }
     }
-
+  
     @Nonnull
     public List<Member> getHumanUsersInVC(@Nullable VoiceChannel voiceChannel) {
         if (voiceChannel == null) {
@@ -448,7 +448,6 @@ public class GuildPlayer extends AbstractPlayer {
         return enabled;
     }
 
-    @Nonnull
     public JDA getJda() {
         return shard.getJda();
     }

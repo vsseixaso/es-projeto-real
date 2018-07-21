@@ -46,6 +46,11 @@ public class SeekCommand extends Command implements IMusicCommand, ICommandRestr
     }
 
     @Override
+    public int getCommandRank() {
+        return 10700;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         GuildPlayer player = PlayerRegistry.getExisting(context.guild);
 
@@ -77,7 +82,6 @@ public class SeekCommand extends Command implements IMusicCommand, ICommandRestr
         context.reply(context.i18nFormat("seekSuccess", atc.getEffectiveTitle(), TextUtils.formatTime(t)));
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         String usage = "{0}{1} [[hh:]mm:]ss\n#";
@@ -85,7 +89,6 @@ public class SeekCommand extends Command implements IMusicCommand, ICommandRestr
         return usage + context.i18n("helpSeekCommand") + example;
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.DJ;

@@ -43,6 +43,11 @@ public class RestartCommand extends Command implements IMusicCommand, ICommandRe
     }
 
     @Override
+    public int getCommandRank() {
+        return 10750;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         GuildPlayer player = PlayerRegistry.getExisting(context.guild);
 
@@ -57,13 +62,11 @@ public class RestartCommand extends Command implements IMusicCommand, ICommandRe
         }
     }
 
-    @Nonnull
     @Override
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#" + context.i18n("helpRestartCommand");
     }
 
-    @Nonnull
     @Override
     public PermissionLevel getMinimumPerms() {
         return PermissionLevel.DJ;

@@ -63,7 +63,6 @@ public class Http {
             .build();
 
 
-    @Nonnull
     @CheckReturnValue
     //if content type is left null we will assume it is text/plain UTF-8
     public static SimpleRequest post(@Nonnull String url, @Nonnull String body, @Nullable String contentType) {
@@ -73,7 +72,6 @@ public class Http {
                 .url(url));
     }
 
-    @Nonnull
     @CheckReturnValue
     //post a simple form body made of string string key values
     public static SimpleRequest post(@Nonnull String url, @Nonnull Params params) {
@@ -86,7 +84,6 @@ public class Http {
                 .url(url));
     }
 
-    @Nonnull
     @CheckReturnValue
     public static SimpleRequest get(@Nonnull String url) {
         return new SimpleRequest(new Request.Builder()
@@ -95,7 +92,6 @@ public class Http {
     }
 
 
-    @Nonnull
     @CheckReturnValue
     public static SimpleRequest get(@Nonnull String url, @Nonnull Params params) {
         return new SimpleRequest(new Request.Builder()
@@ -103,7 +99,6 @@ public class Http {
                 .url(paramUrl(url, params.params).build()));
     }
 
-    @Nonnull
     @CheckReturnValue
     private static HttpUrl.Builder paramUrl(@Nonnull String url, @Nonnull Map<String, String> params) {
         //noinspection ConstantConditions
@@ -125,7 +120,6 @@ public class Http {
             this.requestBuilder = requestBuilder;
         }
 
-        @Nonnull
         @CheckReturnValue
         public SimpleRequest url(@Nonnull String url, @Nonnull Params params) {
             requestBuilder.url(paramUrl(url, params.params).build());
@@ -133,7 +127,6 @@ public class Http {
         }
 
         //set a custom client to execute this request with
-        @Nonnull
         @CheckReturnValue
         public SimpleRequest client(@Nonnull OkHttpClient httpClient) {
             this.httpClient = httpClient;
@@ -141,7 +134,6 @@ public class Http {
         }
 
         //add a header
-        @Nonnull
         @CheckReturnValue
         public SimpleRequest header(@Nonnull String name, @Nonnull String value) {
             requestBuilder.header(name, value);
@@ -149,7 +141,6 @@ public class Http {
         }
 
         //set an authorization header
-        @Nonnull
         @CheckReturnValue
         public SimpleRequest auth(@Nonnull String value) {
             requestBuilder.header("Authorization", value);
@@ -157,7 +148,6 @@ public class Http {
         }
 
         //remember to close the response
-        @Nonnull
         @CheckReturnValue
         public Response execute() throws IOException {
             Request req = requestBuilder.build();
@@ -166,7 +156,6 @@ public class Http {
         }
 
         //give me the content, don't care about error handling
-        @Nonnull
         @CheckReturnValue
         public String asString() throws IOException {
             try (Response response = this.execute()) {
@@ -177,7 +166,6 @@ public class Http {
 
         //give me the content, I don't care about error handling
         // catching JSONExceptions when parsing the returned object is a good idea
-        @Nonnull
         @CheckReturnValue
         public JSONObject asJson() throws IOException {
             return new JSONObject(asString());
@@ -191,14 +179,15 @@ public class Http {
         private Map<String, String> params = new HashMap<>();
 
         //pass pairs of strings and you'll be fine
-        @Nonnull
         @CheckReturnValue
         public static Params of(@Nonnull String... pairs) {
-            if (pairs.length % 2 == 1) {
-                log.warn("Passed an uneven number of args to the Params wrapper, this is a likely bug.");
-            }
             Params result = new Params();
-            MapUtils.putAll(result.params, pairs);
+            if(pairs != null ){
+                if (pairs.length % 2 == 1) {
+                    log.warn("Passed an uneven number of args to the Params wrapper, this is a likely bug.");
+                }
+                MapUtils.putAll(result.params, pairs);
+            }
             return result;
         }
     }
