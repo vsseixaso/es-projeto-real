@@ -47,10 +47,10 @@ public class GuildConfig implements IEntity, Serializable {
     private String guildId;
 
     @Column(name = "track_announce", nullable = false)
-    private boolean trackAnnounce = false;
+    private boolean trackAnnounce;
 
     @Column(name = "auto_resume", nullable = false)
-    private boolean autoResume = false;
+    private boolean autoResume;
 
     @Column(name = "lang", nullable = false)
     private String lang = "en_US";

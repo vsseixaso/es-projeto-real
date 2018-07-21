@@ -104,9 +104,7 @@ public class SpotifyPlaylistSourceManager implements AudioSourceManager, Playlis
 
         String playlistName = plData.getName();
         if (playlistName == null || "".equals(playlistName)) playlistName = "Spotify Playlist";
-        int tracksTotal = plData.getTotalTracks();
 
-        final List<AudioTrack> trackList = new ArrayList<>();
         final List<String> trackListSearchTerms;
 
         try {
@@ -115,6 +113,7 @@ public class SpotifyPlaylistSourceManager implements AudioSourceManager, Playlis
             log.warn("Could not retrieve tracks for playlist " + spotifyListId + " of user " + spotifyUser, e);
             throw new FriendlyException("Couldn't load playlist. Either Spotify is down or the playlist does not exist.", FriendlyException.Severity.COMMON, e);
         }
+        int tracksTotal = plData.getTotalTracks();
         log.info("Retrieved playlist data for " + playlistName + " from Spotify, loading up " + tracksTotal + " tracks");
 
         //build a task list
@@ -128,6 +127,7 @@ public class SpotifyPlaylistSourceManager implements AudioSourceManager, Playlis
         }
 
         //build a tracklist from that task list
+        final List<AudioTrack> trackList = new ArrayList<>();
         for (CompletableFuture<AudioTrack> futureTrack : taskList) {
             try {
                 final AudioTrack audioItem = futureTrack.get();

@@ -93,6 +93,8 @@ public class RepeatCommand extends Command implements IMusicCommand, ICommandRes
             case ALL:
                 context.reply(context.i18n("repeatOnAll"));
                 break;
+            default:
+                break;
         }
     }
 

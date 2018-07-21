@@ -44,8 +44,6 @@ import java.util.List;
 
 public class ListCommand extends Command implements IMusicCommand {
 
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(ListCommand.class);
-
     private static final int PAGE_SIZE = 10;
 
     public ListCommand(String name, String... aliases) {

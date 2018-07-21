@@ -44,7 +44,7 @@ public class LavalinkManager {
     private LavalinkManager() {
     }
 
-    private Lavalink lavalink = null;
+    private Lavalink lavalink;
 
     public void start() {
         if (!isEnabled()) return;

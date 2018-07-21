@@ -77,28 +77,28 @@ public class VoiceChannelCleanupAgent extends FredBoatAgent {
                         && guild.getSelfMember().getVoiceState().getChannel() != null) {
 
                     totalVcs.incrementAndGet();
-                    VoiceChannel vc = guild.getSelfMember().getVoiceState().getChannel();
+                    VoiceChannel voiceChannel = guild.getSelfMember().getVoiceState().getChannel();
 
-                    if (getHumanMembersInVC(vc).size() == 0) {
+                    if (getHumanMembersInVC(voiceChannel).size() == 0) {
                         closedVcs.incrementAndGet();
                         VoteSkipCommand.guildSkipVotes.remove(guild.getIdLong());
                         LavalinkManager.ins.closeConnection(guild);
-                        VC_LAST_USED.remove(vc.getId());
-                    } else if (isBeingUsed(vc)) {
-                        VC_LAST_USED.put(vc.getId(), System.currentTimeMillis());
+                        VC_LAST_USED.remove(voiceChannel.getId());
+                    } else if (isBeingUsed(voiceChannel)) {
+                        VC_LAST_USED.put(voiceChannel.getId(), System.currentTimeMillis());
                     } else {
                         // Not being used! But there are users in te VC. Check if we've been here for a while.
 
-                        if (!VC_LAST_USED.containsKey(vc.getId())) {
-                            VC_LAST_USED.put(vc.getId(), System.currentTimeMillis());
+                        if (!VC_LAST_USED.containsKey(voiceChannel.getId())) {
+                            VC_LAST_USED.put(voiceChannel.getId(), System.currentTimeMillis());
                         }
 
-                        long lastUsed = VC_LAST_USED.get(vc.getId());
+                        long lastUsed = VC_LAST_USED.get(voiceChannel.getId());
 
                         if (System.currentTimeMillis() - lastUsed > UNUSED_CLEANUP_THRESHOLD) {
                             closedVcs.incrementAndGet();
                             LavalinkManager.ins.closeConnection(guild);
-                            VC_LAST_USED.remove(vc.getId());
+                            VC_LAST_USED.remove(voiceChannel.getId());
                         }
                     }
                 }
@@ -112,10 +112,10 @@ public class VoiceChannelCleanupAgent extends FredBoatAgent {
         Metrics.voiceChannelsCleanedUp.inc(closedVcs.get());
     }
 
-    private List<Member> getHumanMembersInVC(VoiceChannel vc){
+    private List<Member> getHumanMembersInVC(VoiceChannel voiceChannel){
         ArrayList<Member> l = new ArrayList<>();
 
-        for(Member m : vc.getMembers()){
+        for(Member m : voiceChannel.getMembers()){
             if(!m.getUser().isBot()){
                 l.add(m);
             }
@@ -124,8 +124,8 @@ public class VoiceChannelCleanupAgent extends FredBoatAgent {
         return l;
     }
 
-    private boolean isBeingUsed(VoiceChannel vc) {
-        GuildPlayer guildPlayer = PlayerRegistry.getExisting(vc.getGuild());
+    private boolean isBeingUsed(VoiceChannel voiceChannel) {
+        GuildPlayer guildPlayer = PlayerRegistry.getExisting(voiceChannel.getGuild());
 
         return guildPlayer != null && guildPlayer.isPlaying();
     }

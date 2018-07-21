@@ -62,17 +62,17 @@ public class Config {
     public static final Config CONFIG;
 
     static {
-        Config c;
+        Config config;
         try {
-            c = new Config(
+            config = new Config(
                     loadConfigFile("credentials"),
                     loadConfigFile("config")
             );
         } catch (final IOException e) {
-            c = null;
+            config = null;
             log.error("Could not load config files!", e);
         }
-        CONFIG = c;
+        CONFIG = config;
     }
 
     private final DistributionEnum distribution;
@@ -92,7 +92,7 @@ public class Config {
     private String prefix = DEFAULT_PREFIX;
     private boolean restServerEnabled = true;
     private List<String> adminIds = new ArrayList<>();
-    private boolean useAutoBlacklist = false;
+    private boolean useAutoBlacklist;
     private String game = "";
     private List<LavalinkHost> lavalinkHosts = new ArrayList<>();
     private String openWeatherKey;
@@ -320,12 +320,14 @@ public class Config {
 
     private static String cleanTabs(String content, String file) {
         CharMatcher tab = CharMatcher.is('\t');
+        String out;
         if (tab.matchesAnyOf(content)) {
             log.warn("{} contains tab characters! Trying a fix-up.", file);
-            return tab.replaceFrom(content, "  ");
+            out = tab.replaceFrom(content, "  ");
         } else {
-            return content;
+            out = content;
         }
+        return out;
     }
 
     public String getRandomGoogleKey() {
@@ -428,11 +430,13 @@ public class Config {
     }
 
     public String getGame() {
+        String nameGame;
         if (game == null || game.isEmpty()) {
-            return "Say " + getPrefix() + "help";
+            nameGame = "Say " + getPrefix() + "help";
         } else {
-            return game;
+            nameGame = game;
         }
+        return nameGame;
     }
 
     public String getTestBotToken() {

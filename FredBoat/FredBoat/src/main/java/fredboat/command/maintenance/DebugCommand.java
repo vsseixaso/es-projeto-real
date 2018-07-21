@@ -103,17 +103,6 @@ public class DebugCommand extends Command implements IMaintenanceCommand, IComma
         return eb.addField(title, TextUtils.asCodeBlock(content), false);
     }
 
-    private EmbedBuilder addAudioDebug(EmbedBuilder eb, GuildPlayer player) {
-        int deficit = AudioLossCounter.EXPECTED_PACKET_COUNT_PER_MIN - (player.getAudioLossCounter().getLastMinuteLoss() + player.getAudioLossCounter().getLastMinuteSuccess());
-
-        String title = "**Audio Debug**";
-        String content
-                = "Packets sent:   " + player.getAudioLossCounter().getLastMinuteSuccess() + "\n"
-                + "Null packets:   " + player.getAudioLossCounter().getLastMinuteLoss() + "\n"
-                + "Packet deficit: " + deficit;
-        return eb.addField(title, TextUtils.asCodeBlock(content), false);
-    }
-
     private EmbedBuilder addVoiceChannelDebug(EmbedBuilder eb, GuildPlayer player) {
         String title = "**VoiceChannel Debug**";
         String content = "Current vc: null";

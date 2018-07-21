@@ -70,7 +70,6 @@ public class ConfigCommand extends Command implements IModerationCommand, IComma
     }
 
     private void setConfig(CommandContext context) {
-        Member invoker = context.invoker;
         if (!PermsUtil.checkPermsWithFeedback(PermissionLevel.ADMIN, context)) {
             return;
         }
@@ -84,6 +83,7 @@ public class ConfigCommand extends Command implements IModerationCommand, IComma
         String key = context.args[0];
         String val = context.args[1];
 
+        Member invoker = context.invoker;
         switch (key) {
             case "track_announce":
                 if (val.equalsIgnoreCase("true") | val.equalsIgnoreCase("false")) {

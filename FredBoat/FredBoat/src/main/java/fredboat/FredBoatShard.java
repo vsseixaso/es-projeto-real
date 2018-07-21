@@ -131,8 +131,8 @@ public class FredBoatShard extends FredBoat {
             LavalinkManager.ins.openConnection(channel);
 
             if (!LavalinkManager.ins.isEnabled()) {
-                AudioManager am = channel.getGuild().getAudioManager();
-                am.setSendingHandler(player);
+                AudioManager audioManager = channel.getGuild().getAudioManager();
+                audioManager.setSendingHandler(player);
             }
         });
 

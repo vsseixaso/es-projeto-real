@@ -65,7 +65,6 @@ public class MavenTestCommand extends Command implements ICommandRestricted {
 
     private void mavenTest(CommandContext context, Message status) {
         try {
-            Runtime rt = Runtime.getRuntime();
 
             try {
                 CentralMessaging.editMessage(status, status.getRawContent() + "\n\nRunning `mvn test`... ")
@@ -79,6 +78,7 @@ public class MavenTestCommand extends Command implements ICommandRestricted {
                 throw new RuntimeException("Could not locate file: pom.xml");
             }
 
+            Runtime rt = Runtime.getRuntime();
             String pomPath = pom.getAbsolutePath();
             Process mvnBuild = rt.exec("mvn -f " + pomPath + " test");
             new SLF4JInputStreamLogger(log, mvnBuild.getInputStream()).start();

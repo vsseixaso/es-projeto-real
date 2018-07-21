@@ -40,8 +40,6 @@ import java.util.concurrent.TimeoutException;
 
 public class BotRestartCommand extends Command implements ICommandRestricted {
 
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(BotRestartCommand.class);
-
     public BotRestartCommand(String name, String... aliases) {
         super(name, aliases);
     }

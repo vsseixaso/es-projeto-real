@@ -53,19 +53,19 @@ public abstract class ProvideJDASingleton {
 
     private static final Logger log = LoggerFactory.getLogger(ProvideJDASingleton.class);
 
-    protected static JDA jda = null;
-    protected static Guild testGuild = null;
-    protected static TextChannel testChannel = null;
-    protected static Member testSelfMember = null;
+    protected static JDA jda;
+    protected static Guild testGuild;
+    protected static TextChannel testChannel;
+    protected static Member testSelfMember;
 
-    protected static int passedTests = 0;
-    protected static int attemptedTests = 0;
+    protected static int passedTests;
+    protected static int attemptedTests;
 
-    protected static boolean initialized = false;
+    protected static boolean initialized;
 
     private static long startTime;
-    private static int totalPassed = 0;
-    private static int totalAttempted = 0;
+    private static int totalPassed;
+    private static int totalAttempted;
     private static List<String> classStats = new ArrayList<>();
 
     private static Thread SHUTDOWNHOOK = new Thread(ProvideJDASingleton.class.getSimpleName() + " shutdownhook") {

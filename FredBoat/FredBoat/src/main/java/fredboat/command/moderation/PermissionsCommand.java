@@ -56,8 +56,6 @@ import java.util.List;
 
 public class PermissionsCommand extends Command implements IModerationCommand {
 
-    private static final Logger log = LoggerFactory.getLogger(PermissionsCommand.class);
-
     public final PermissionLevel permissionLevel;
 
     public PermissionsCommand(PermissionLevel permissionLevel, String name, String... aliases) {
@@ -113,18 +111,17 @@ public class PermissionsCommand extends Command implements IModerationCommand {
 
     public void remove(CommandContext context) {
         Guild guild = context.guild;
-        Member invoker = context.invoker;
         //remove the first argument aka add / remove etc to get a nice search term
         String term = context.rawArgs.replaceFirst(context.args[0], "").trim();
 
         List<IMentionable> search = new ArrayList<>();
         search.addAll(ArgumentUtil.fuzzyRoleSearch(guild, term));
         search.addAll(ArgumentUtil.fuzzyMemberSearch(guild, term, false));
-        GuildPermissions gp = EntityReader.getGuildPermissions(guild);
 
         IMentionable selected = ArgumentUtil.checkSingleFuzzySearchResult(search, context, term);
         if (selected == null) return;
 
+        GuildPermissions gp = EntityReader.getGuildPermissions(guild);
         if (!gp.getFromEnum(permissionLevel).contains(mentionableToId(selected))) {
             context.replyWithName(context. i18nFormat("permsNotAdded", "`" + mentionableToName(selected) + "`", "`" + permissionLevel + "`"));
             return;
@@ -133,6 +130,7 @@ public class PermissionsCommand extends Command implements IModerationCommand {
         List<String> newList = new ArrayList<>(gp.getFromEnum(permissionLevel));
         newList.remove(mentionableToId(selected));
 
+        Member invoker = context.invoker;
         if (permissionLevel == PermissionLevel.ADMIN
                 && PermissionLevel.BOT_ADMIN.getLevel() > PermsUtil.getPerms(invoker).getLevel()
                 && !PermissionUtil.checkPermission(invoker, Permission.ADMINISTRATOR)
@@ -155,11 +153,11 @@ public class PermissionsCommand extends Command implements IModerationCommand {
         List<IMentionable> list = new ArrayList<>();
         list.addAll(ArgumentUtil.fuzzyRoleSearch(guild, term));
         list.addAll(ArgumentUtil.fuzzyMemberSearch(guild, term, false));
-        GuildPermissions gp = EntityReader.getGuildPermissions(guild);
 
         IMentionable selected = ArgumentUtil.checkSingleFuzzySearchResult(list, context, term);
         if (selected == null) return;
 
+        GuildPermissions gp = EntityReader.getGuildPermissions(guild);
         if (gp.getFromEnum(permissionLevel).contains(mentionableToId(selected))) {
             context.replyWithName(context.i18nFormat("permsAlreadyAdded", "`" + mentionableToName(selected) + "`", "`" + permissionLevel + "`"));
             return;

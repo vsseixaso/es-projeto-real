@@ -37,7 +37,7 @@ class DebugConnectionListener implements ConnectionListener {
 
     private static final Logger log = LoggerFactory.getLogger(DebugConnectionListener.class);
 
-    private ConnectionStatus oldStatus = null;
+    private ConnectionStatus oldStatus;
     private final long guildId;
     private final JDA.ShardInfo shardInfo;
 

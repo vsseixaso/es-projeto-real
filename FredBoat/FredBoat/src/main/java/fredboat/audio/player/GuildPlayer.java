@@ -107,9 +107,9 @@ public class GuildPlayer extends AbstractPlayer {
         if (!(t instanceof MessagingException)) {
             log.error("Guild player error", t);
         }
-        TextChannel tc = getActiveTextChannel();
-        if (tc != null) {
-            CentralMessaging.sendMessage(tc, "Something went wrong!\n" + t.getMessage());
+        TextChannel textChannel = getActiveTextChannel();
+        if (textChannel != null) {
+            CentralMessaging.sendMessage(textChannel, "Something went wrong!\n" + t.getMessage());
         }
     }
 
@@ -164,21 +164,21 @@ public class GuildPlayer extends AbstractPlayer {
     }
 
     public void queue(String identifier, CommandContext context) {
-        IdentifierContext ic = new IdentifierContext(identifier, context.channel, context.invoker);
+        IdentifierContext identifierContext = new IdentifierContext(identifier, context.channel, context.invoker);
 
         if (context.invoker != null) {
             joinChannel(context.invoker);
         }
 
-        audioLoader.loadAsync(ic);
+        audioLoader.loadAsync(identifierContext);
     }
 
-    public void queue(IdentifierContext ic) {
-        if (ic.getMember() != null) {
-            joinChannel(ic.getMember());
+    public void queue(IdentifierContext identifierContext) {
+        if (identifierContext.getMember() != null) {
+            joinChannel(identifierContext.getMember());
         }
 
-        audioLoader.loadAsync(ic);
+        audioLoader.loadAsync(identifierContext);
     }
 
     public void queue(AudioTrackContext atc){
@@ -202,20 +202,23 @@ public class GuildPlayer extends AbstractPlayer {
         List<AudioTrackContext> result = new ArrayList<>();
 
         //adjust args for whether there is a track playing or not
+
+        int newStart = start;
+        int newEnd = end;
         if (player.getPlayingTrack() != null) {
             if (start <= 0) {
                 result.add(context);
-                end--;//shorten the requested range by 1, but still start at 0, since that's the way the trackprovider counts its tracks
+                newEnd--;//shorten the requested range by 1, but still start at 0, since that's the way the trackprovider counts its tracks
             } else {
                 //dont add the currently playing track, drop the args by one since the "first" track is currently playing
-                start--;
-                end--;
+                newStart--;
+                newEnd--;
             }
         } else {
             //nothing to do here, args are fine to pass on
         }
 
-        result.addAll(audioTrackProvider.getTracksInRange(start, end));
+        result.addAll(audioTrackProvider.getTracksInRange(newStart, newEnd));
         return result;
     }
 
@@ -277,9 +280,9 @@ public class GuildPlayer extends AbstractPlayer {
             return currentTc;
         } else {
             log.warn("No currentTC in guild {}! Trying to look up a channel where we can talk...", guildId);
-            Guild g = getGuild();
-            if (g != null) {
-                for (TextChannel tc : g.getTextChannels()) {
+            Guild guild = getGuild();
+            if (guild != null) {
+                for (TextChannel tc : guild.getTextChannels()) {
                     if (tc.canTalk()) {
                         return tc;
                     }
@@ -288,14 +291,15 @@ public class GuildPlayer extends AbstractPlayer {
             return null;
         }
     }
-
-    public List<Member> getHumanUsersInVC(@Nullable VoiceChannel vc) {
-        if (vc == null) {
+  
+    @Nonnull
+    public List<Member> getHumanUsersInVC(@Nullable VoiceChannel voiceChannel) {
+        if (voiceChannel == null) {
             return Collections.emptyList();
         }
 
         ArrayList<Member> nonBots = new ArrayList<>();
-        for (Member member : vc.getMembers()) {
+        for (Member member : voiceChannel.getMembers()) {
             if (!member.getUser().isBot()) {
                 nonBots.add(member);
             }
@@ -354,9 +358,9 @@ public class GuildPlayer extends AbstractPlayer {
         }
     }
 
-    public void setCurrentTC(@Nonnull TextChannel tc) {
-        if (this.currentTCId != tc.getIdLong()) {
-            this.currentTCId = tc.getIdLong();
+    public void setCurrentTC(@Nonnull TextChannel textChannel) {
+        if (this.currentTCId != textChannel.getIdLong()) {
+            this.currentTCId = textChannel.getIdLong();
         }
     }
 

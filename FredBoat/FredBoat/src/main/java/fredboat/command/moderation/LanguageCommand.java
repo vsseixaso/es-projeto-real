@@ -50,16 +50,17 @@ public class LanguageCommand extends Command implements IModerationCommand {
 
     @Override
     public void onInvoke(@Nonnull CommandContext context) {
-        Guild guild = context.guild;
         if (!context.hasArguments()) {
             handleNoArgs(context);
             return;
         }
 
-        if (!PermsUtil.checkPermsWithFeedback(PermissionLevel.ADMIN, context))
+        if (!PermsUtil.checkPermsWithFeedback(PermissionLevel.ADMIN, context)) {
             return;
-        
+        }
+
         //Assume proper usage and that we are about to set a new language
+        Guild guild = context.guild;
         try {
             I18n.set(guild, context.args[0]);
         } catch (I18n.LanguageNotSupportedException e) {

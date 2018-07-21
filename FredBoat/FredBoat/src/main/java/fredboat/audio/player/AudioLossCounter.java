@@ -29,12 +29,12 @@ public class AudioLossCounter {
 
     public static final int EXPECTED_PACKET_COUNT_PER_MIN = (60 * 1000) / 20; // 20ms packets
 
-    private long curMinute = 0;
-    private int curLoss = 0;
-    private int curSucc = 0;
+    private long curMinute;
+    private int curLoss;
+    private int curSucc;
 
-    private int lastLoss = 0;
-    private int lastSucc = 0;
+    private int lastLoss;
+    private int lastSucc;
 
     AudioLossCounter() {
     }

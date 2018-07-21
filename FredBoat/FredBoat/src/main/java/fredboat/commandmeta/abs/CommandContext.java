@@ -73,7 +73,9 @@ public class CommandContext extends Context {
     @Nonnull public String cmdName = "";                        // this is the fredboat internal command name, e.g. "play"
     @Nonnull public String[] args = new String[0];              // the arguments split by whitespace, excluding prefix and trigger
     @Nonnull public String rawArgs = "";                        // raw arguments excluding prefix and trigger, trimmed
-    @Nonnull public Command command = null;
+
+    @SuppressWarnings("ConstantConditions")//the parsing code handles setting this to a nonnull value
+    @Nonnull public Command command;
     //@formatter:on
 
     /**

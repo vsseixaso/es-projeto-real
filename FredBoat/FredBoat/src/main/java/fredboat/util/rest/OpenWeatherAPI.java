@@ -123,7 +123,6 @@ public class OpenWeatherAPI implements Weather {
                 try {
                     Response response = client.newCall(request).execute();
                     ResponseBody responseBody = response.body();
-                    String resultBody = "";
 
                     switch (response.code()) {
                         case 200:

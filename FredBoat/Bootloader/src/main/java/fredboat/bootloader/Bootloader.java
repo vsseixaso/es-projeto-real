@@ -40,14 +40,14 @@ public class Bootloader {
 
     private static JSONArray command;
     private static String jarName;
-    private static int recentBoots = 0;
-    private static long lastBoot = 0L;
+    private static int recentBoots;
+    private static long lastBoot;
 
     public static void main(String[] args) throws IOException, InterruptedException {
         OUTER:
         while (true) {
-            InputStream is = new FileInputStream(new File("./bootloader.json"));
-            Scanner scanner = new Scanner(is);
+            InputStream imputStream = new FileInputStream(new File("./bootloader.json"));
+            Scanner scanner = new Scanner(imputStream);
             JSONObject json = new JSONObject(scanner.useDelimiter("\\A").next());
             scanner.close();
 
@@ -89,17 +89,17 @@ public class Bootloader {
             System.exit(-1);
         }
 
-        //ProcessBuilder pb = new ProcessBuilder(System.getProperty("java.home") + "/bin/java -jar "+new File("FredBoat-1.0.jar").getAbsolutePath())
-        ProcessBuilder pb = new ProcessBuilder()
+        //ProcessBuilder processbuilder = new ProcessBuilder(System.getProperty("java.home") + "/bin/java -jar "+new File("FredBoat-1.0.jar").getAbsolutePath())
+        ProcessBuilder processbuilder = new ProcessBuilder()
                 .inheritIO();
         ArrayList<String> list = new ArrayList<>();
         command.forEach((Object str) -> {
             list.add((String) str);
         });
 
-        pb.command(list);
+        processbuilder.command(list);
 
-        Process process = pb.start();
+        Process process = processbuilder.start();
         return process;
     }
 

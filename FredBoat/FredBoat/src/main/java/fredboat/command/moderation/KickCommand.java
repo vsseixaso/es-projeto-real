@@ -52,15 +52,12 @@ import java.util.function.Consumer;
 // moderation commands too.
 public class KickCommand extends Command implements IModerationCommand {
 
-    private static final Logger log = LoggerFactory.getLogger(KickCommand.class);
-
     public KickCommand(String name, String... aliases) {
         super(name, aliases);
     }
 
     @Override
     public void onInvoke(@Nonnull CommandContext context) {
-        Guild guild = context.guild;
         //Ensure we have a search term
         if (!context.hasArguments()) {
             HelpCommand.sendFormattedCommandHelp(context);
@@ -79,6 +76,7 @@ public class KickCommand extends Command implements IModerationCommand {
         String auditLogReason = DiscordUtil.formatReasonForAuditLog(plainReason, context.invoker);
 
         //putting together the action
+        Guild guild = context.guild;
         RestAction<Void> modAction = guild.getController().kick(target, auditLogReason);
 
         //on success
