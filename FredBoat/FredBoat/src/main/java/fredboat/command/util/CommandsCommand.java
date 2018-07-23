@@ -62,6 +62,11 @@ public class CommandsCommand extends Command implements IUtilCommand {
         super(name, aliases);
     }
 
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
     //design inspiration by Weiss Schnee's bot
     //https://cdn.discordapp.com/attachments/230033957998166016/296356070685671425/unknown.png
     @Override

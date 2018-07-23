@@ -61,6 +61,11 @@ public class NodesCommand extends Command implements IMaintenanceCommand {
 
     }
 
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
     @SuppressWarnings("StringConcatenationInLoop")
     static void handleLavalink(CommandContext context) {
         Lavalink lavalink = LavalinkManager.ins.getLavalink();

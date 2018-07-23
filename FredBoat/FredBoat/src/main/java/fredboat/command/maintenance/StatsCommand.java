@@ -56,6 +56,11 @@ public class StatsCommand extends Command implements IMaintenanceCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         context.reply(getStats(context, context.guild.getJDA()));
     }

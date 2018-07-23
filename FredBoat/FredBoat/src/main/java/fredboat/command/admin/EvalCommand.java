@@ -67,6 +67,11 @@ public class EvalCommand extends Command implements ICommandRestricted {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         Guild guild = context.guild;
         JDA jda = guild.getJDA();

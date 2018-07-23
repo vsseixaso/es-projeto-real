@@ -56,6 +56,11 @@ public class ShardsCommand extends Command implements IMaintenanceCommand {
         }
     }
 
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
     public static List<Message> getShardStatus(@Nonnull Message input) {
         MessageBuilder mb = null;
         List<Message> messages = new ArrayList<>();

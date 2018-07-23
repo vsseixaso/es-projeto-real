@@ -44,6 +44,11 @@ public class SayCommand extends Command implements IUtilCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         if (!context.hasArguments()) {
             HelpCommand.sendFormattedCommandHelp(context);

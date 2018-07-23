@@ -40,6 +40,11 @@ public class BrainfuckCommand extends Command implements IUtilCommand {
         super(name, aliases);
     }
 
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
     ByteBuffer bytes;
     char[] code;
     public static final int MAX_CYCLE_COUNT = 10000;

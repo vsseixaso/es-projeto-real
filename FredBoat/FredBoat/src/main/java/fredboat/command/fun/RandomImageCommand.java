@@ -150,4 +150,9 @@ public class RandomImageCommand extends Command implements IFunCommand {
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#Post a random image.";
     }
+
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
 }

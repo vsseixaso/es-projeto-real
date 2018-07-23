@@ -44,6 +44,11 @@ public class CatgirlCommand extends Command implements IFunCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         context.sendTyping();
         FredBoat.executor.submit(() -> postCatgirl(context));

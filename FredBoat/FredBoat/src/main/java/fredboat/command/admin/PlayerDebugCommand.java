@@ -51,6 +51,11 @@ public class PlayerDebugCommand extends Command implements ICommandRestricted {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         JSONArray a = new JSONArray();
         

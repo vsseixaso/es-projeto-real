@@ -53,6 +53,11 @@ public class UpdateCommand extends Command implements ICommandRestricted {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         try {
             File homeJar = new File(System.getProperty("user.home") + "/FredBoat-1.0.jar");

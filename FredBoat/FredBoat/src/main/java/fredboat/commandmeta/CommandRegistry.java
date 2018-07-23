@@ -47,6 +47,7 @@ public class CommandRegistry {
         }
     }
 
+
     @Nullable
     public static CommandEntry getCommand(@Nonnull String name) {
         return registry.get(name);
@@ -62,6 +63,11 @@ public class CommandRegistry {
 
     public static void removeCommand(String name) {
         CommandEntry entry = new CommandEntry(new Command(name) {
+            @Override
+            public int getCommandRank() {
+                return 0;
+            }
+
             @Override
             public void onInvoke(@Nonnull CommandContext context) {
                 context.reply("This command is temporarily disabled");

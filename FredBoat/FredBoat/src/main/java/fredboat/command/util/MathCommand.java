@@ -51,6 +51,11 @@ public class MathCommand extends Command implements IUtilCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         String output;
 

@@ -51,12 +51,19 @@ public class SoftbanCommand extends Command implements IModerationCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         //Ensure we have a search term
         if (!context.hasArguments()) {
             HelpCommand.sendFormattedCommandHelp(context);
             return;
         }
+
+
 
         //was there a target provided?
         Member target = ArgumentUtil.checkSingleFuzzyMemberSearchResult(context, context.args[0]);

@@ -57,6 +57,11 @@ public class ConfigCommand extends Command implements IModerationCommand, IComma
         }
     }
 
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
     private void printConfig(CommandContext context) {
         GuildConfig gc = EntityReader.getGuildConfig(context.guild.getId());
 

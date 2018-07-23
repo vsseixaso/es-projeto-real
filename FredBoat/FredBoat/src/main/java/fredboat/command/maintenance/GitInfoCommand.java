@@ -47,6 +47,11 @@ import java.util.regex.Pattern;
  */
 public class GitInfoCommand extends Command implements IMaintenanceCommand {
 
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
     private RandomImageCommand octocats = new RandomImageCommand("https://imgur.com/a/sBkTj", "");
 
     //https://regex101.com/r/wqfWBI/6/tests

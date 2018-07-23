@@ -42,6 +42,11 @@ public class DestroyCommand extends Command implements IMusicCommand, ICommandRe
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         PlayerRegistry.destroyPlayer(context.guild);
         context.replyWithName(context.i18n("destroySucc"));

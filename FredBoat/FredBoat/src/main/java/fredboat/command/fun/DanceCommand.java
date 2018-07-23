@@ -63,6 +63,11 @@ public class DanceCommand extends Command implements IFunCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         //locking by use of java.util.concurrent.locks
 

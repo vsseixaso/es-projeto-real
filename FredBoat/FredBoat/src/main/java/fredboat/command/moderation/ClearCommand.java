@@ -50,6 +50,11 @@ public class ClearCommand extends Command implements IModerationCommand {
         super(name, aliases);
     }
 
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
     //TODO: Redo this
     //TODO: i18n this class
     @Override

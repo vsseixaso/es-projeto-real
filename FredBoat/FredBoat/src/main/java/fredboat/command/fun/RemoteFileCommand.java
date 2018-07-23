@@ -53,4 +53,9 @@ public class RemoteFileCommand extends Command implements IFunCommand {
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#Post a funny image or meme.";
     }
+
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
 }

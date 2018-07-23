@@ -29,6 +29,10 @@ public class PingCommand extends Command implements IMaintenanceCommand {
         long ping = context.guild.getJDA().getPing();
         context.reply(ping + "ms");
     }
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
 }
 
 //hello

@@ -48,6 +48,11 @@ public class UnblacklistCommand extends Command implements ICommandRestricted {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         if (!FeatureFlags.RATE_LIMITER.isActive()) {
             context.replyWithName("The rate limiter feature has not been turned on.");

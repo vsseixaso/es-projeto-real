@@ -57,6 +57,11 @@ public class DebugCommand extends Command implements IMaintenanceCommand, IComma
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
 
         Guild guild;

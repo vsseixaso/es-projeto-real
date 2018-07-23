@@ -49,7 +49,12 @@ public class HistoryCommand extends Command implements IMusicCommand {
         super(name, aliases);
     }
 
-  @Override
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
   public void onInvoke(@Nonnull CommandContext context) {
       GuildPlayer player = PlayerRegistry.getOrCreate(context.guild);
 

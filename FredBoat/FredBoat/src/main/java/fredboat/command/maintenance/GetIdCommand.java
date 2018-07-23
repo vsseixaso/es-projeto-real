@@ -43,6 +43,11 @@ public class GetIdCommand extends Command implements IMaintenanceCommand {
         context.reply(context.i18nFormat("getidSuccess", context.guild.getId(), context.channel.getId()));
     }
 
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
     @Nonnull
     @Override
     public String help(@Nonnull Context context) {

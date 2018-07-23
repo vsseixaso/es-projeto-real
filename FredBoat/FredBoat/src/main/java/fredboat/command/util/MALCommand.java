@@ -65,6 +65,11 @@ public class MALCommand extends Command implements IUtilCommand {
         super(name, aliases);
     }
 
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
     //MALs API is wonky af and loves to take its time to answer requests, so we are setting rather high time outs
     private static OkHttpClient malHttpClient = new OkHttpClient.Builder()
             .connectTimeout(120, TimeUnit.SECONDS)

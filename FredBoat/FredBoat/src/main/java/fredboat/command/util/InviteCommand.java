@@ -40,6 +40,11 @@ public class InviteCommand extends Command implements IUtilCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         User self = context.guild.getJDA().getSelfUser();
         String str = "https://discordapp.com/oauth2/authorize?&client_id=" + self.getId() + "&scope=bot";

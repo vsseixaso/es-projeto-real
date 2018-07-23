@@ -49,6 +49,11 @@ public class LanguageCommand extends Command implements IModerationCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         if (!context.hasArguments()) {
             handleNoArgs(context);

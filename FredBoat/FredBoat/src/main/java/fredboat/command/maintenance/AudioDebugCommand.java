@@ -45,6 +45,11 @@ public class AudioDebugCommand extends Command implements IMaintenanceCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         if (LavalinkManager.ins.isEnabled()) {
             handleLavalink(context);

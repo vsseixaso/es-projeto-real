@@ -47,6 +47,11 @@ public class JokeCommand extends Command implements IFunCommand {
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
         try {
             JSONObject object = Http.get("http://api.icndb.com/jokes/random").asJson();

@@ -40,6 +40,11 @@ import java.util.stream.Collectors;
 
 public class FuzzyUserSearchCommand extends Command implements IMaintenanceCommand {
 
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
     public FuzzyUserSearchCommand(String name, String... aliases) {
         super(name, aliases);
     }

@@ -18,6 +18,11 @@ public class DisableCommandsCommand extends Command implements ICommandRestricte
     }
 
     @Override
+    public int getCommandRank() {
+        return 0;
+    }
+
+    @Override
     public void onInvoke(@Nonnull CommandContext context) {
 
         if (context.hasArguments()) {

@@ -49,4 +49,9 @@ public class VersionCommand extends Command implements IMaintenanceCommand {
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#Show the JDA version.";
     }
+
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
 }

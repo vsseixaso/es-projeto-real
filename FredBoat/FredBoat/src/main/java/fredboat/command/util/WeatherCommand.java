@@ -82,4 +82,9 @@ public class WeatherCommand extends Command implements IUtilCommand {
     public String help(@Nonnull Context context) {
         return HELP_STRING_FORMAT + context.i18n("helpWeatherCommand");
     }
+
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
 }

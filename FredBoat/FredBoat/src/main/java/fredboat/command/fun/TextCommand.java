@@ -51,4 +51,9 @@ public class TextCommand extends Command implements IFunCommand {
     public String help(@Nonnull Context context) {
         return "{0}{1}\n#Send a funny text.";
     }
+
+    @Override
+    public int getCommandRank() {
+        return 0;
+    }
 }
